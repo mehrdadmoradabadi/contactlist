@@ -28,9 +28,9 @@ class User(UserMixin):
 # @auth.verify_password
 # def verify_password(username, password):
 #     mydb = mysql.connector.connect(
-#             host="172.16.30.24",
-#             user="remote_user",
-#             password="S@b_DB_Pass_1",
+#             host="192.168.1.100",
+#             user="*******",
+#             password="*******",
 #             database="dkmm"
 #             )
 #     mycursor = mydb.cursor()
@@ -50,10 +50,10 @@ class contactDetailOperation(Enum):
 class Contacts:    
     def create(name,lastname): #Create a New Contact
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
             )
         mycursor = mydb.cursor()
         try:
@@ -68,10 +68,10 @@ class Contacts:
         return(the_lastrow)
     def showContactDetail(contactId): # Show All Contact details in DB
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
             )
         mycursor = mydb.cursor()
         mycursor.execute(f"SELECT * FROM contact_details WHERE contact_id = {str(contactId)};")
@@ -89,10 +89,10 @@ class Contacts:
         return(output)
     def showAllContacts(): # Show All Contacts in DB
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
             )
         mycursor = mydb.cursor()
         mycursor.execute("SELECT * FROM contacts;")
@@ -106,10 +106,10 @@ class Contacts:
         return(output)
     def updateContact(obj):
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
             )
         mycursor = mydb.cursor()
         returnMsg = ''
@@ -182,10 +182,10 @@ class Contacts:
 class ContactDetail:
     def createDetail(inp): # Create
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
             )
         mycursor = mydb.cursor()
         for i in inp["contactDetail"]:
@@ -197,21 +197,21 @@ class ContactDetail:
         return(output)
     
 insert ={#              Sample Data Structure for Updating Contacts and Details
-    "name":"Mehrdad",
-    "lastname":"Moradabadi",
+    "name":"smth",
+    "lastname":"lastname",
     "contactId":"1",
     "contactDetail":[{
         "detailId":"1",
         "type":"1",
-        "data":"09128393976"},
+        "data":"0123456789"},
         {"detailId":"2",
         "type":"1",
-        "data":"09217154701"},
+        "data":"012345766"},
         {"detailId":"3",
         "type":"2",
-        "data":"m.moradabadi@sabinarya.com"},
+        "data":"m.moradabadi@yahoo.com"},
         {"type":"2",
-        "data":"m.moradabadi@ssssssssabinarya.com"}
+        "data":"m.moradabadi@yahoo.com"}
         ]}
 
 @app.route('/add-contact',methods=['POST','GET'])
@@ -298,11 +298,11 @@ def new_user():
         username = request.form['username']
         passwd = request.form['password']
         mydb = mysql.connector.connect(
-                host="172.16.30.24",
-                user="remote_user",
-                password="S@b_DB_Pass_1",
-                database="dkmm"
-                )
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
+            )
         password = hashlib.md5(passwd.encode()).hexdigest()
         mycursor = mydb.cursor()
         mycursor.execute("insert into users (username , password) values (%s,%s)", (username,password))
@@ -312,11 +312,11 @@ def new_user():
         return (render_template('add-user.html',status='success',message = 'New user created'))
     else : 
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
-                )
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
+            )
         mycursor = mydb.cursor()
         mycursor.execute("select * from users;")
         X = mycursor.fetchall()
@@ -333,10 +333,10 @@ def login():
         username = request.form['username']
         password = request.form['password']  
         mydb = mysql.connector.connect(
-            host="172.16.30.24",
-            user="remote_user",
-            password="S@b_DB_Pass_1",
-            database="dkmm"
+            host="192.168.1.100",
+            user="*******",
+            password="********",
+            database="DB-Name"
             )
         mycursor = mydb.cursor()
         mycursor.execute(f"select * from users where username = \'{str(username)}\'")
