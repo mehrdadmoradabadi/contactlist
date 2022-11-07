@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactList</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/logincss.css') }}">
+</head>
+<body>
+    <div class="login">
+        <h1>LOGIN</h1>
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required="required" />
+            <input type="password" name="password" placeholder="Password" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Let me in</button>
+        </form>
+        <h2> {{value}}</h2>
+    </div>
+</body>
+</html>

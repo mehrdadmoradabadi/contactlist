@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <title>ContactList</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#">Contact List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add-contact">Add Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add-user">Add user</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+                </ul>
+                <!--<form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>-->
+            </div>
+            </div>
+        </nav>
+        <div class="row d-flex justify-content-center">
+            <form method="post" class="mt-3 col-4" name="form1">
+                {%if status == "success"%}
+                    <div class="alert alert-{{status}}"><p class="mb-0">{{message}}</p></div>
+                {% elif status == "danger" %}
+                    <div class="alert alert-{{status}}"><p class="mb-0">{{message}}</p></div>
+                {%endif%}
+                <input class="form-control mb-2" type="text" name="name" placeholder="Name" required />
+                <input class="form-control mb-2" type="text" name="lastname" placeholder="Last Name" required />
+                <div class="row">
+                    <div class="col-md-12 details-parent">
+                        <div class="row contact-detail-row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <select name="types[]" id="" class="form-select data-type" required>
+                                            <option value="1">Phone</option>
+                                            <option value="2">Email</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" name="data[]" class="form-control" placeholder="Enter Phone Number" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="col-12 d-grid gap-2">
+                                    <button type="button" class="btn btn-primary btn-large plus-row">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-success mt-2 btn-large">SAVE</button>
+            </form>
+        </div>
+    </div>
+    
+  <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+      let row = $('.contact-detail-row').html();
+        $('.plus-row').click(function(){
+            $('.details-parent').append('<div class="row contact-detail-row mt-2">' + row + '</div>');
+            $('.details-parent').find('.contact-detail-row').last().find('button').addClass('btn-danger').removeClass('btn-primary').removeClass('plus-row').addClass('minus-row').text('-');
+            $('.details-parent').find('.contact-detail-row').last().find('button').click(function(){
+                $(this).closest('.contact-detail-row').remove();
+            });
+            $('.details-parent').find('.contact-detail-row').last().find('select').change(changeDataType);
+        });
+        function changeDataType(){
+            if($(this).val() == 1)
+                $(this).closest('.contact-detail-row').find('input').attr('placeholder','Enter Phone Number')
+            else
+                $(this).closest('.contact-detail-row').find('input').attr('placeholder','Enter Email Address')
+        }
+        $('.data-type').change(changeDataType);
+    </script>
+    
+</body>
+</html>

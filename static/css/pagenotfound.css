@@ -1,0 +1,99 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto";
+  text-align: center;
+  color: #f5f5f5;
+  -webkit-animation: fadeIn 1s ease-in;
+          animation: fadeIn 1s ease-in;
+}
+
+.hero {
+  background: url("https://howtomakefilm.com/wp-content/uploads/2018/06/How-to-Write-a-Movie-Script-3.jpg") no-repeat center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  height: 100%;
+  width: 100%;
+}
+
+.inner-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10vmin;
+}
+@media only screen and (min-width: 320px) {
+  .inner-text {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media only screen and (min-width: 400px) {
+  .inner-text {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+@media only screen and (min-width: 680px) {
+  .inner-text {
+    font-size: 75px;
+  }
+}
+@media only screen and (min-width: 950px) {
+  .inner-text {
+    font-size: 100px;
+  }
+}
+
+.p1 {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 900;
+  marign: 0;
+  line-height: 1;
+}
+@media only screen and (max-width: 465px) {
+  .p1 {
+    display: block;
+    position: absolute;
+    top: -25%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.p2 {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 100;
+  marign: 0;
+  line-height: 1;
+  color: #20b2aa;
+}
+@media only screen and (max-width: 465px) {
+  .p2 {
+    position: relative;
+    top: 0.6em;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
